@@ -10,3 +10,4 @@ phpunit.xml
 .project
 .swp
 /nbproject
+/*.sh
