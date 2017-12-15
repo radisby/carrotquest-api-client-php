@@ -27,7 +27,7 @@ class Client {
             );
         }
         $parameters = array_merge($this->defaultParameters, $parameters);
-        $url = $fullPath ? $path : $this->url . $path;
+        $url = $this->url . $path;
         if (self::METHOD_GET === $method && count($parameters)) {
             $url .= '?' . http_build_query($parameters, '', '&');
         }
