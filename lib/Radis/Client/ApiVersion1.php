@@ -15,8 +15,8 @@ class ApiVersion1 extends AbstractLoader {
      * @param string $site    site code
      *
      */
-    public function __construct($url, $authToken) {
-        parent::__construct($url, $authToken);
+    public function __construct($url, $authToken, $version) {
+        parent::__construct($url, $authToken, $version);
     }
 
     use V1\Users;
