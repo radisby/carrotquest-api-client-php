@@ -10,10 +10,18 @@ abstract class AbstractLoader {
     protected $client;
     protected $url;
 
-    public function __construct($url, $authToken) {
+    public function __construct($url, $authToken, $version) {
 
-        $this->url = $authToken;
+        if (empty($version) || !in_array($version, ['v1'])) {
+            throw new \InvalidArgumentException(
+                'Version parameter must be not empty and must be equal one of v1'
+            );
+        }
+
         $this->authToken = $authToken;
+        
+        $url = $url . $version;
+        
         $this->client = new Client($url, ['auth_token' => $authToken]);
     }
 
