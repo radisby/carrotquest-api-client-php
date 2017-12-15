@@ -7,11 +7,12 @@ class Client {
     const METHOD_GET = 'GET';
     const METHOD_POST = 'POST';
 
-    private $auth_token = null;
     protected $url;
+    protected $defaultParameters;
 
-    public function __construct($url) {
+    public function __construct($url, array $defaultParameters = []) {
         $this->url = $url;
+        $this->defaultParameters = $defaultParameters;
     }
 
     public function makeRequest(
