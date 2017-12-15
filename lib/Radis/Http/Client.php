@@ -2,6 +2,10 @@
 
 namespace Radis\Http;
 
+use Radis\Exception\CurlException;
+use Radis\Exception\InvalidJsonException;
+use Radis\Response\ApiResponse;
+
 class Client {
 
     const METHOD_GET = 'GET';
