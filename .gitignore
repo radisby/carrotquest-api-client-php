@@ -9,5 +9,5 @@ phpunit.xml
 .buildpath
 .project
 .swp
-/nbproject
+/nbproject/private
 /*.sh
