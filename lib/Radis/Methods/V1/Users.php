@@ -28,8 +28,14 @@ trait Users {
      * @param array $event
      * @param type $by
      */
-    public function usersEventCreate($event, array $params, $by = 'id') {
+    public function usersEventCreate($id, $event, array $params, $by_user_id = false) {
 
+        if (!$id) {
+            throw new \InvalidArgumentException(
+            'Parameter `id` must be set'
+            );
+        }
+        
         if (!$event) {
             throw new \InvalidArgumentException(
             'Parameter `event` must be set'
@@ -42,10 +48,8 @@ trait Users {
             );
         }
 
-        $this->checkIdParameter($by);
-
         return $this->client->makeRequest(
-                        sprintf('/users/%s/events', $params[$by]), "POST", ['params' => json_encode($params), 'by' => $by]
+                        sprintf('/users/%s/events', $id), "POST", ['event' => $event, 'params' => json_encode($params), 'by_user_id' => $by_user_id]
         );
     }
 
