@@ -35,21 +35,24 @@ trait Users {
             'Parameter `id` must be set'
             );
         }
-        
+
         if (!$event) {
             throw new \InvalidArgumentException(
             'Parameter `event` must be set'
             );
         }
 
-        if (!count($params)) {
-            throw new \InvalidArgumentException(
-            'Parameter `params` must contains a data'
-            );
+        $data = [
+            'event' => $event,
+            'by_user_id' => $by_user_id,
+        ];
+
+        if (!empty($params)) {
+            $data['params'] = json_encode($params);
         }
 
         return $this->client->makeRequest(
-                        sprintf('/users/%s/events', $id), "POST", ['event' => $event, 'params' => json_encode($params), 'by_user_id' => $by_user_id]
+                        sprintf('/users/%s/events', $id), "POST", $data
         );
     }
 
