@@ -29,4 +29,30 @@ abstract class AbstractLoader {
         $this->client = new Client($url, ['auth_token' => $authToken]);
     }
 
+    /**
+     * Check ID parameter
+     *
+     * @param string $by identify by
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return bool
+     */
+    protected function checkIdParameter($by) {
+        $allowedForBy = [
+            'by_user_id',
+            'id'
+        ];
+
+        if (!in_array($by, $allowedForBy, false)) {
+            throw new \InvalidArgumentException(
+            sprintf(
+                    'Value "%s" for "by" param is not valid. Allowed values are %s.', $by, implode(', ', $allowedForBy)
+            )
+            );
+        }
+
+        return true;
+    }
+
 }
